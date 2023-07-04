@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.jnosql</groupId>
+        <artifactId>demo-ee</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>bookstore</artifactId>
+    <packaging>war</packaging>
+
+    <description>
+        This is a sample Jakarta EE application demonstrating Jakarta NoSQL use cases.
+    </description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.report.sourceEncoding>UTF-8</project.report.sourceEncoding>
+
+        <maven.compiler.release>17</maven.compiler.release>
+
+        <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
+        <maven-war-plugin.version>3.3.2</maven-war-plugin.version>
+        <maven-wildfly-plugin.version>4.1.0.Final</maven-wildfly-plugin.version>
+
+        <jakartaee-api.version>10.0.0</jakartaee-api.version>
+        <jakarta.validation-api.version>3.0.2</jakarta.validation-api.version>
+        <wildfly.version>27.0.1.Final</wildfly.version>
+        <assertj.version>3.24.2</assertj.version>
+        <junit.version>5.9.2</junit.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-api</artifactId>
+            <version>${jakartaee-api.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jnosql.databases</groupId>
+            <artifactId>jnosql-mongodb</artifactId>
+            <version>${jnosql.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+            <version>${jakarta.validation-api.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Test dependencies -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>jakarta-nosql-bookstore</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${maven-war-plugin.version}</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+
+            <!-- Execute 'mvn clean package wildfly:run' to run the application. -->
+            <plugin>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <version>${maven-wildfly-plugin.version}</version>
+                <configuration>
+                    <version>${wildfly.version}</version>
+                    <server-config>standalone-full.xml</server-config>
+                    <add-user>
+                        <users>
+                            <user>
+                                <username>admin</username>
+                                <password>admin</password>
+                            </user>
+                        </users>
+                    </add-user>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
