@@ -2,7 +2,6 @@ package org.jnosql.example.application;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import jakarta.nosql.Template;
 import jakarta.ws.rs.NotFoundException;
 import org.jnosql.example.application.dto.BookDto;
 import org.jnosql.example.domain.Book;
@@ -12,9 +11,6 @@ import java.util.List;
 
 @ApplicationScoped
 public class BookService {
-    @Inject
-    Template template;
-
     @Inject
     private BookRepository bookRepository;
 
