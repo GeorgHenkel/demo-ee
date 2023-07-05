@@ -2,22 +2,21 @@ package org.jnosql.example.domain.validation;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
-import org.jnosql.example.domain.Book;
 
-public class IsbnValidator implements ConstraintValidator<ValidIsbn, Book> {
+public class IsbnValidator implements ConstraintValidator<ValidIsbn, String> {
     @Override
-    public boolean isValid(Book book, ConstraintValidatorContext context) {
-        if (book == null) {
+    public boolean isValid(String isbn, ConstraintValidatorContext context) {
+        if (isbn == null) {
             return false;
         }
 
-        String isbn = prepareIsbn(book.getIsbn());
-        if (isbn.length() != 13) {
+        String cleanedIsbn = prepareIsbn(isbn);
+        if (cleanedIsbn.length() != 13) {
             return false;
         }
 
-        int checkDigitResult = calculateCheckDigit(isbn);
-        return toInt(isbn.charAt(12)) == checkDigitResult;
+        int checkDigitResult = calculateCheckDigit(cleanedIsbn);
+        return toInt(cleanedIsbn.charAt(12)) == checkDigitResult;
     }
 
     private String prepareIsbn(String isbn) {

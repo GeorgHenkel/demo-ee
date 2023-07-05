@@ -9,8 +9,6 @@ public class Author {
     private String firstName;
     @Column("last_name")
     private String lastName;
-    @Column
-    private String initials;
 
     public String getFirstName() {
         return firstName;
@@ -26,13 +24,5 @@ public class Author {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getInitials() {
-        return initials;
-    }
-
-    public void setInitials(String initials) {
-        this.initials = initials;
     }
 }

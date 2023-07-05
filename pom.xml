@@ -14,6 +14,7 @@
     <properties>
         <jnosql.version>1.0.0-SNAPSHOT</jnosql.version>
     </properties>
+
     <modules>
         <module>liberty-mongodb</module>
         <module>wildfly-mongodb</module>
