@@ -4,25 +4,10 @@ import jakarta.nosql.Column;
 import jakarta.nosql.Entity;
 
 @Entity
-public class Author {
-    @Column("first_name")
-    private String firstName;
-    @Column("last_name")
-    private String lastName;
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+public record Author(
+        @Column("first_name")
+        String firstName,
+        @Column("last_name")
+        String lastName
+) {
 }

@@ -46,10 +46,9 @@
             <version>${jnosql.version}</version>
         </dependency>
         <dependency>
-            <groupId>jakarta.validation</groupId>
-            <artifactId>jakarta.validation-api</artifactId>
-            <version>${jakarta.validation-api.version}</version>
-            <scope>provided</scope>
+            <groupId>org.eclipse.jnosql.mapping</groupId>
+            <artifactId>jnosql-mapping-validation</artifactId>
+            <version>${jnosql.version}</version>
         </dependency>
 
         <!-- Test dependencies -->

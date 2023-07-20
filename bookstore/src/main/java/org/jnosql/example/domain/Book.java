@@ -3,8 +3,8 @@ package org.jnosql.example.domain;
 import jakarta.nosql.Column;
 import jakarta.nosql.Entity;
 import jakarta.nosql.Id;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import org.jnosql.example.domain.validation.ValidIsbn;
 
 import java.util.Date;
@@ -20,7 +20,7 @@ public class Book {
     private String title;
 
     @ValidIsbn
-    @Min(13)
+    @Size(min=13)
     @Column("isbn")
     private String isbn;
 
